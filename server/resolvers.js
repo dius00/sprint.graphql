@@ -8,6 +8,18 @@ module.exports = {
     },
     Pokemon: (parent, args) => {
       return data.pokemon.find((pokemon) => pokemon.name === args.name);
-   },
+    },
+    Pokemon: (parent, args) => {
+      return data.pokemon.find(
+        (pokemon) => Number(pokemon.id) === Number(args.id)
+      );
+    },
+    Types: () => {
+      return data;
+    },
+
+    Attacks: () => {
+      return data.attacks;
+    },
   },
 };

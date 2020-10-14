@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server");
 
+// removde `{},` on line 149
 const typeDefs = gql`
   # Your schema goes here.
   # The schema should model the full data object available!
@@ -47,9 +48,16 @@ const typeDefs = gql`
     attacks: AttackClass
   }
 
+  type PokeTypes {
+    types: [String!]
+  }
+
   type Query {
     Pokemons: [Pokemon]
     Pokemon(name: String!): Pokemon
+    Pokemon(id: String!): Pokemon
+    Types: PokeTypes
+    Attacks: AttackClass
   }
 `;
 
