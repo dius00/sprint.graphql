@@ -54,10 +54,9 @@ const typeDefs = gql`
 
   type Query {
     Pokemons: [Pokemon]
-    Pokemon(name: String!): Pokemon
-    Pokemon(id: String!): Pokemon
+    Pokemon(name: String, id:Int): Pokemon
     Types: PokeTypes
-    Attacks: AttackClass
+    Attacks(types: String): [Attack]
   }
 `;
 

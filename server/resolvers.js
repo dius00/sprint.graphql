@@ -7,19 +7,21 @@ module.exports = {
       return data.pokemon;
     },
     Pokemon: (parent, args) => {
-      return data.pokemon.find((pokemon) => pokemon.name === args.name);
-    },
-    Pokemon: (parent, args) => {
-      return data.pokemon.find(
-        (pokemon) => Number(pokemon.id) === Number(args.id)
-      );
+      if (args.id)
+        return data.pokemon.find(
+          (pokemon) => Number(pokemon.id) === Number(args.id)
+        );
+      if (args.name)
+        return data.pokemon.find((pokemon) => pokemon.name === args.name);
     },
     Types: () => {
       return data;
     },
 
-    Attacks: () => {
-      return data.attacks;
+    Attacks: (parent, args) => {
+      const type = args.types.toLowerCase();
+      if (type === "fast") return data.attacks.fast;
+      if (type === "special") return data.attacks.special;
     },
   },
 };
