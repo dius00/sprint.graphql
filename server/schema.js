@@ -57,8 +57,82 @@ const typeDefs = gql`
     Pokemon(name: String, id: Int): Pokemon
     Types: PokeTypes
     Type(name: String): [Pokemon]
-    Attacks(types: String): [Attack]
+    Attacks(type: String): [Attack]
     Attack(name: String): [Pokemon]
+  }
+
+  input WeightHeightInput {
+    minimum: String
+    maximum: String
+  }
+
+  input EvolReqInput {
+    amount: Int
+    name: String
+  }
+
+  input AtkClInput {
+    fast: [AttackInput]
+    special: [AttackInput]
+  }
+
+  input AttackInput {
+    name: String
+    type: String
+    damage: Int
+  }
+
+  input IdNameInput {
+    id: Int!
+    name: String!
+  }
+
+  input Pokeinput {
+    id: String!
+    name: String!
+    classification: String!
+    types: [String!]
+    resistant: [String!]
+    weaknesses: [String!]
+    weight: WeightHeightInput!
+    height: WeightHeightInput!
+    fleeRate: Float!
+    evolutionRequirements: EvolReqInput!
+    evolutions: [IdNameInput!]
+    maxCP: Int!
+    maxHP: Int!
+    attacks: AtkClInput!
+  }
+
+  input PokePatch {
+    id: String
+    name: String
+    classification: String
+    types: [String]
+    resistant: [String]
+    weaknesses: [String]
+    weight: WeightHeightInput
+    height: WeightHeightInput
+    fleeRate: Float
+    evolutionRequirements: EvolReqInput
+    evolutions: [IdNameInput]
+    maxCP: Int
+    maxHP: Int
+    attacks: AtkClInput
+  }
+
+  type Mutation {
+    DeletePokemon(name: String, id: Int): String
+    AddPokemon(input: PokePatch): String
+    PatchPokemon(name: String, input: PokePatch): Pokemon
+
+    DeleteType(name: String): String
+    AddType(name: String!): String
+    PatchType(name: String, replace: String): String
+
+    DeleteAttack(name: String): String
+    PatchAttack(name: String, input: AttackInput): String
+    AddAttack(type: String, input: AttackInput!): String
   }
 `;
 
