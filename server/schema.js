@@ -124,7 +124,7 @@ const typeDefs = gql`
   type Mutation {
     DeletePokemon(name: String, id: Int): String
     AddPokemon(input: PokePatch): String
-    PatchPokemon(name: String, input: PokePatch): Pokemon
+    PatchPokemon(name: String, id: Int, input: PokePatch): Pokemon
 
     DeleteType(name: String): String
     AddType(name: String!): String
